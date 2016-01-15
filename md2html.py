@@ -4,7 +4,7 @@ import os
 import time
 
 
-BLOG_NAME = "markdown blog"
+BLOG_NAME = "fwindpeak's personal blog"
 BLOG_DSC = " a test of markdown page"
 
 md_list=[]
