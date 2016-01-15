@@ -73,6 +73,10 @@ def process_md():
         md_dict['abstract'] = abstract
         md_dict['ctime'] = os.path.getctime(fpath)
         md_dict['mtime'] = os.path.getmtime(fpath)
+        
+        if md_dict['ctime'] > md_dict['mtime']:
+            md_dict['ctime'] = md_dict['mtime']
+        
         md_list.append(md_dict)
 
         body = mdf(fpath).encode("utf-8")
