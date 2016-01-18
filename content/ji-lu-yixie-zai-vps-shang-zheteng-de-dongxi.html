@@ -7,7 +7,11 @@
 <link rel="stylesheet" type="text/css" href="./style/default.css" />
 </style>
     </head>
-    <body><h1>记录一些在VPS上折腾的东西</h1>
+    <body>
+    <div id=head>
+    <a href="../index.html">首页</a>
+    </div>
+<h1>记录一些在VPS上折腾的东西</h1>
 
 <p>折腾这些东西，总是要经常借助搜索引擎找答案，找的次数多了，也就烦了，不想总是做重复工作。</p>
 
@@ -43,5 +47,20 @@ yum install -y mysql mysql-server mysql-devel
 然后就可以<code>service mysqld start</code>启动mysql服务了，根据提示进行一些配置即可。</p>
 
 <p>感觉执行<code>mysql_secure_installation</code>这个向导就不错</p>
+
+<div id="disqus_thread"></div>
+<script>
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+
+s.src = '//fwindpeak.disqus.com/embed.js';
+
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
 </body>
 </html>

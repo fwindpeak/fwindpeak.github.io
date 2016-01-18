@@ -1,3 +1,6 @@
+#!/usr/env python
+#coding:utf-8
+
 from markdown2 import markdown as md
 from markdown2 import markdown_path as mdf
 import os
@@ -9,17 +12,45 @@ BLOG_DSC = " a test of markdown page"
 
 md_list=[]
 
+head='''
+    <div id=head>
+    <a href="../index.html">首页</a>
+    </div>
+'''
+
+discus_name="fwindpeak"
+
+disqus_content='''
+<div id="disqus_thread"></div>
+<script>
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+
+s.src = '//'''+discus_name+'''.disqus.com/embed.js';
+
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+'''
+
+STYLE_PATH="./style/default.css"
+
 def get_time(sec):
     return time.strftime("%Y-%m-%d %H:%M:%S",time.localtime(sec))
 
-def write_html(title,body,fn):
+def write_html(title,body,fn,style_path=STYLE_PATH):
+
     dat='''<!DOCTYPE html>
 <html>
     <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1" />  
         <title>'''+title+'''</title>
-<link rel="stylesheet" type="text/css" href="./style/default.css" />
+<link rel="stylesheet" type="text/css" href="'''+style_path+'''" />
 </style>
     </head>
     <body>'''+body+'''</body>
@@ -62,6 +93,8 @@ def get_title_and_abstract(fn):
 
 def process_md():
     global md_list
+    global head
+    global disqus_content
     for fn in os.listdir("./markdown"):
         md_dict={}
         print fn
@@ -80,6 +113,7 @@ def process_md():
         md_list.append(md_dict)
 
         body = mdf(fpath).encode("utf-8")
+        body = head+body+disqus_content
         write_html(title,body,"./content/"+fname)
 
     # sort md_list by create time down
@@ -98,7 +132,7 @@ def write_index():
         index_md += "-------\n\n"
     open("./index.md","w").write(index_md)
     body = mdf("./index.md").encode("utf-8")
-    write_html(BLOG_NAME,body,"./index.html")
+    write_html(BLOG_NAME,body,"./index.html","./content/style/default.css")
         
 
 
