@@ -135,9 +135,8 @@ def write_index():
     write_html(BLOG_NAME,body,"./index.html","./content/style/default.css")
         
 
-
-init()
-process_md()
-write_index()
-
+if __name__ == '__main__':
+    init()
+    process_md()
+    write_index()
     
