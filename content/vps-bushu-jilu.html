@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />  
+        <title>VPS部署记录</title>
+<link rel="stylesheet" type="text/css" href="./style/default.css" />
+</style>
+    </head>
+    <body>
+    <div id=head>
+    <a href="../index.html">首页</a>
+    </div>
+<h1>VPS部署记录</h1>
+
+<p>前两天匆匆忙忙部署了个网站，用的都是最传统的东西centos+httpd+php+mysql。这些东西都可以通过yum来安装，比较省事。</p>
+
+<p>另外代码提交直接是搭了个svn仓库，然后通过hook来同步网站内容，这样修改起来方便很多。</p>
+
+<p>下面记录一些怕忘记的东西。</p>
+
+<h2>apache httpd 配置</h2>
+
+<p>直接在<code>/etc/httpd/conf.d</code>中增加一个配置文件就行，类似这样</p>
+
+<pre><code>&lt;VirtualHost *:80&gt;
+    ServerAdmin   admin@test.com
+    DocumentRoot  /var/www/html/test 
+    ServerName   test.com
+    ErrorLog  logs/test-error_log
+    CustomLog logs/test-access_log common
+&lt;/VirtualHost&gt;
+</code></pre>
+
+<h2>mysql</h2>
+
+<h3>初始化配置</h3>
+
+<p>安装完后运行<code>mysql_secure_installation</code>这个向导就可以了。</p>
+
+<h3>启动服务</h3>
+
+<p><code>sudo service mysqld start</code></p>
+
+<h3>开机自启动</h3>
+
+<p>这个还没弄</p>
+
+<h3>数据库管理工具</h3>
+
+<p>本来想直接yum安装phpmyadmin，但是总有一些问题，后面发现一个<a href="https://www.adminer.org/">adminer</a>只要单个php文件就行了，很方便，官网下载放上去就行了。</p>
+
+<h3>svn仓库</h3>
+
+<p>这个有点繁琐，也可以随时百度一些教程，先讲讲大概过程。</p>
+
+<h4>创建代码仓库</h4>
+
+<p><code>svnadmin create /path/of/reposdir</code></p>
+
+<h4>配置svn仓库参数</h4>
+
+<p><strong>passwd</strong></p>
+
+<pre><code>[users]
+hello=123
+</code></pre>
+
+<p><strong>authz</strong></p>
+
+<pre><code>[/]
+hello=rw
+</code></pre>
+
+<p><strong>snvserv.conf</strong>
+    anon-access = none # 使非授权用户无法访问
+    auth-access = write # 使授权用户有写权限
+    password-db = password
+    authz-db = authz   # 访问控制文件
+    realm = /opt/svn/repos # 认证命名空间，一般仓库的路径即可</p>
+
+<h4>启动服务</h4>
+
+<pre><code>svnserve -d -r ./svnrepos
+</code></pre>
+
+<div id="disqus_thread"></div>
+<script>
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+
+s.src = '//fwindpeak.disqus.com/embed.js';
+
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+</body>
+</html>
