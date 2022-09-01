@@ -8,7 +8,7 @@ import time
 
 
 BLOG_NAME = "fwindpeak's personal blog"
-BLOG_DSC = " a test of markdown page"
+BLOG_DSC = "A simple Markdown page"
 
 md_list = []
 
@@ -51,11 +51,11 @@ def write_html(title, body, fn, style_path=STYLE_PATH):
     <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>'''+str(title)+'''</title>
-<link rel="stylesheet" type="text/css" href="'''+str(style_path)+'''" />
+        <title>'''+title+'''</title>
+<link rel="stylesheet" type="text/css" href="'''+style_path+'''" />
 </style>
     </head>
-    <body>'''+str(body)+'''</body>
+    <body>'''+body+'''</body>
 </html>'''
 
     open(fn, "w").write(dat)
@@ -69,7 +69,7 @@ def init():
 def get_title_and_abstract(fn):
     fp = open(fn, "r")
     title = fp.readline()
-    title = title.strip()
+    title = title.strip().replace('# ', '')
     i = 0
     abstract = ""
     while True:
@@ -130,7 +130,7 @@ def write_index():
         index_md += dic['abstract']+"\n\n"
         index_md += "-------\n\n"
     open("./index.md", "w").write(index_md)
-    body = mdf("./index.md").encode("utf-8")
+    body = mdf("./index.md").encode("utf-8").decode()
     write_html(BLOG_NAME, body, "./index.html", "./content/style/default.css")
 
 

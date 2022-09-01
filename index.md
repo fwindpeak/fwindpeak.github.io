@@ -1,8 +1,8 @@
 # fwindpeak's personal blog
 
- a test of markdown page
+A simple Markdown page
 
-## [# 部署脚本更新到 python3](./content/use-python3.html)
+## [部署脚本更新到 python3](./content/use-python3.html)
 *2022-09-01 18:31:13*
 
 突然想到还有这个东西，之前随便弄的，现在看来也不是很顺手，起码`python3`已是主流了，跑一下用不了，稍微改了一下。
@@ -11,7 +11,7 @@
 
 -------
 
-## [# vim 折腾记录](./content/vim-zhe-teng-ji-lu.html)
+## [vim 折腾记录](./content/vim-zhe-teng-ji-lu.html)
 *2022-09-01 18:29:15*
 
 现在来折腾一下 vim，顺便记录一下，免得后面忘记。
@@ -22,7 +22,7 @@
 
 -------
 
-## [# 记录一些在 VPS 上折腾的东西](./content/ji-lu-yixie-zai-vps-shang-zheteng-de-dongxi.html)
+## [记录一些在 VPS 上折腾的东西](./content/ji-lu-yixie-zai-vps-shang-zheteng-de-dongxi.html)
 *2022-09-01 18:20:17*
 
 折腾这些东西，总是要经常借助搜索引擎找答案，找的次数多了，也就烦了，不想总是做重复工作。
